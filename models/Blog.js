@@ -1,8 +1,10 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
+// Blog class inherits from Model
 class Blog extends Model { }
 
+// initialize Blog model
 Blog.init(
 	{
 		id: {
@@ -41,4 +43,5 @@ Blog.init(
 	}
 );
 
+// export Blog model
 module.exports = Blog;
