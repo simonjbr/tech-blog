@@ -14,6 +14,9 @@ const routes = require('./controllers');
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
+// import helper functions
+const helpers = require('./utils/helpers');
+
 // create express app
 const app = express();
 
@@ -21,7 +24,7 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // create an isolated handlebars environment
-const hbs = exphbs.create({});
+const hbs = exphbs.create({ helpers });
 
 // register the handlebars view engine
 app.engine('handlebars', hbs.engine);
