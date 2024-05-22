@@ -18,4 +18,13 @@ router.get('/', async (req, res) => {
 	}
 });
 
+// signup page
+router.get('/signup', async (req, res) => {
+	try {
+		res.status(200).render('signup');
+	} catch (error) {
+		res.status(500).json(error);
+	}
+});
+
 module.exports = router;
