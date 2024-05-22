@@ -4,10 +4,15 @@ const { User, Blog } = require('../models');
 // get all blogs for homepage
 router.get('/', async (req, res) => {
 	try {
-		const blogs = await Blog.findAll({
-			raw: true,
+		// find all blogs in db
+		const dbBlogData = await Blog.findAll({
 			include: User,
 		});
+
+		// serialize blog data
+		const blogs = dbBlogData.map((blog) => 
+			blog.get({ plain: true })
+		);
 
 		res.status(200).render('homepage', {
 			blogs,
