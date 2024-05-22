@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
 		});
 
 		// serialize blog data
-		const blogs = dbBlogData.map((blog) => 
+		const blogs = dbBlogData.map((blog) =>
 			blog.get({ plain: true })
 		);
 
@@ -27,6 +27,15 @@ router.get('/', async (req, res) => {
 router.get('/signup', async (req, res) => {
 	try {
 		res.status(200).render('signup');
+	} catch (error) {
+		res.status(500).json(error);
+	}
+});
+
+// login page
+router.get('/login', async (req, res) => {
+	try {
+		res.status(200).render('login');
 	} catch (error) {
 		res.status(500).json(error);
 	}
