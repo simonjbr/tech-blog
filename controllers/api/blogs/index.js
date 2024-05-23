@@ -9,7 +9,15 @@ router.get('/:id', isLoggedIn, async (req, res) => {
 	try {
 		const blogId = req.params.id;
 		const dbBlogData = await Blog.findByPk(blogId, {
-			include: [User, Comment],
+			include: [
+				{
+					model: User,
+				},
+				{
+					model: Comment,
+					include: User
+				}
+			],
 		});
 
 		// serialize data for rendering
@@ -17,10 +25,14 @@ router.get('/:id', isLoggedIn, async (req, res) => {
 
 		res.render('blog', {
 			blog,
+			user_id: req.session.user_id,
+			loggedIn: req.session.logged_in,
 		})
 	} catch (error) {
 		res.status(500).json(error);
 	}
 });
+
+// 
 
 module.exports = router;
