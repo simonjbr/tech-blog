@@ -17,7 +17,39 @@ router.get('/', async (req, res) => {
 			blog.get({ plain: true })
 		);
 
+		// render homepage with blog data
 		res.status(200).render('homepage', {
+			blogs,
+			loggedIn: req.session.logged_in,
+		});
+
+	} catch (error) {
+		res.status(500).json(error);
+	}
+});
+
+// get users blogs for dashboard
+router.get('/dashboard', isLoggedIn, async (req, res) => {
+	try {
+		// find all blogs belonging to logged in user
+		const dbBlogData = await Blog.findAll({
+			include: User,
+			where: {
+				user_id: req.session.user_id,
+			}
+		});
+
+		console.log(dbBlogData);
+
+		// serialize blog data
+		const blogs = dbBlogData.map((blog) =>
+			blog.get({ plain: true })
+		);
+
+		console.log(blogs);
+
+		// render dashboard with blog data
+		res.status(200).render('dashboard', {
 			blogs,
 			loggedIn: req.session.logged_in,
 		});
