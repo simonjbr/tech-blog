@@ -59,6 +59,18 @@ router.get('/dashboard', isLoggedIn, async (req, res) => {
 	}
 });
 
+// route to get add new blog form
+router.get('/createBlog', isLoggedIn, async (req, res) => {
+	try {
+		// render create-blog page
+		res.status(200).render('create-blog', {
+			loggedIn: req.session.logged_in,
+		});
+	} catch (error) {
+		res.status(500).json(error);
+	}
+});
+
 // signup page
 router.get('/signup', async (req, res) => {
 	try {
