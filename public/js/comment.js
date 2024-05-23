@@ -10,6 +10,11 @@ const addCommentHandler = async (event) => {
 	const user_id = commentInput.dataset.userId;
 	const blog_id = commentInput.dataset.blogId;
 
+	if (!user_id) {
+		document.location.replace('/login');
+		return;
+	}
+
 	// form validation
 	if (content) {
 		// send fetch POST request to /api/comments
