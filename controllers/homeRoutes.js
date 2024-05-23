@@ -1,6 +1,9 @@
 const router = require('express').Router();
 const { User, Blog } = require('../models');
 
+// import custom middleware
+const isLoggedIn = require('../utils/auth');
+
 // get all blogs for homepage
 router.get('/', async (req, res) => {
 	try {
