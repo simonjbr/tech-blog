@@ -5,7 +5,7 @@ const { User, Blog, Comment } = require('../../../models');
 const isLoggedIn = require('../../../utils/auth');
 
 // /api/blogs/:id route for individual blog page
-router.get('/:id', isLoggedIn, async (req, res) => {
+router.get('/:id', async (req, res) => {
 	try {
 		const blogId = req.params.id;
 		const dbBlogData = await Blog.findByPk(blogId, {
@@ -33,6 +33,20 @@ router.get('/:id', isLoggedIn, async (req, res) => {
 	}
 });
 
-// 
+// /api/blogs POST route to create new blog
+router.post('/', isLoggedIn, async (req, res) => {
+	try {
+		// create new blog object
+		const newBlog = await Blog.create({
+			title: req.body.title,
+			content: req.body.content,
+			user_id: req.session.user_id
+		});
+
+		res.status(200).json(newBlog);
+	} catch (error) {
+		res.status(500).json(error);
+	}
+});
 
 module.exports = router;
