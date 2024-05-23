@@ -39,14 +39,10 @@ router.get('/dashboard', isLoggedIn, async (req, res) => {
 			}
 		});
 
-		console.log(dbBlogData);
-
 		// serialize blog data
 		const blogs = dbBlogData.map((blog) =>
 			blog.get({ plain: true })
 		);
-
-		console.log(blogs);
 
 		// render dashboard with blog data
 		res.status(200).render('dashboard', {
