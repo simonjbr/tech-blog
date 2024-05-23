@@ -1,0 +1,9 @@
+{{!-- {{ log blogs }} --}}
+<ul class="list-group">
+	{{#each blogs as |blog|}}
+	{{> blog-details}}
+	{{/each}}
+</ul>
+<div class="container text-center my-2">
+	<button class="btn btn-primary">Add New Blog</button>
+</div>
