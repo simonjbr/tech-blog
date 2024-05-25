@@ -35,6 +35,28 @@ router.get('/edit/:id', isLoggedIn, async (req, res) => {
 	}
 });
 
+// /api/blogs/edit/:id PUT route to update existing blogs
+router.put('/edit/:id', isLoggedIn, async (req, res) => {
+	try {
+		// extract blog id from route parameter
+		const blogId = req.params.id;
+
+		const updateBlog = await Blog.update({
+			title: req.body.title,
+			content: req.body.content,
+		},
+			{
+				where: {
+					id: blogId,
+				}
+			});
+
+		res.status(200).json(updateBlog);
+	} catch (error) {
+		res.status(500).json(error);
+	}
+});
+
 // /api/blogs/:id route for individual blog page
 router.get('/:id', async (req, res) => {
 	try {
