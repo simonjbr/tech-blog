@@ -57,6 +57,24 @@ router.put('/edit/:id', isLoggedIn, async (req, res) => {
 	}
 });
 
+// /api/blogs/delete/:id route for deleting blogs by id
+router.delete('/delete/:id', isLoggedIn, async (req, res) => {
+	try {
+		// extract id from route parameters
+		const blogId = req.params.id;
+
+		const deleteBlog = await Blog.destroy({
+			where: {
+				id: blogId
+			}
+		});
+
+		res.status(200).json(deleteBlog);
+	} catch (error) {
+		res.status(500).json(error);
+	}
+});
+
 // /api/blogs/:id route for individual blog page
 router.get('/:id', async (req, res) => {
 	try {
