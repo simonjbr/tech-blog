@@ -7,8 +7,6 @@ const loginHandler = async (event) => {
 	const username = document.querySelector('#username-input').value;
 	const password = document.querySelector('#password-input').value;
 
-	console.log(username, password);
-
 	// form validation
 	if (username && password) {
 		// api request to create new user
