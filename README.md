@@ -41,10 +41,10 @@ Once logged in, users are free to leave comments on existing blogs by navigating
 When the user has finished they can logout using the `Logout` link on the navbar. Otherwise users will be logged out automatically after an hour.
 
 > Deployed application:
-[https://note-taker-zet7.onrender.com](https://note-taker-zet7.onrender.com)
+[https://tech-blog-v2l9.onrender.com/](https://tech-blog-v2l9.onrender.com/)
 
 Screenshot of deployed application:
-![Deployed screenshot](./public/assets/images/deployed-screenshot.png)
+![Deployed screenshot](./assets/images/deployed-screenshot.png)
 
 ## Credits
 
