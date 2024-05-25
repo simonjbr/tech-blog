@@ -7,12 +7,11 @@ const editBlogHandler = async (event) => {
 	const content = document.querySelector('#content-input').value;
 
 	// extract ids from data attributes
-	const userId = document.querySelector('#title-input').dataset.userId;
 	const blogId = document.querySelector('#title-input').dataset.blogId;
 
 	// form validation
 	if (title && content) {
-		// send fetch POST request to /api/blogs
+		// send fetch PUT request to /api/blogs/edit/:id
 		const response = await fetch(`/api/blogs/edit/${blogId}`, {
 			method: 'PUT',
 			headers: {
@@ -34,7 +33,7 @@ const editBlogHandler = async (event) => {
 	}
 };
 
-// add event listener for add new blog form
+// add event listener for edit blog form
 document
 	.querySelector('#edit-blog-form')
 	.addEventListener('submit', editBlogHandler);
