@@ -1,0 +1,14 @@
+<form class="mx-4" id="edit-blog-form">
+	<h3 class="subtitle">Edit Blog</h3>
+	<div class="mb-3">
+		<label for="title-input" class="form-label">Title</label>
+		<input type="text" class="form-control" id="title-input" value="{{blog.title}}" data-blog-id="{{blog.id}}" data-user-id="{{user_id}}">
+	</div>
+	<div class="mb-3">
+		<label for="content-input" class="form-label">Content</label>
+		<textarea type="text" class="form-control" id="content-input">{{blog.content}}</textarea>
+	</div>
+	<button type="submit" class="btn btn-primary">Update Blog</button>
+	<button type="button" class="btn btn-danger" id="delete-btn">Delete</button>
+</form>
+<script src="/js/editBlog.js"></script>
