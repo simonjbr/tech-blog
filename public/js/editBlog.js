@@ -1,3 +1,4 @@
+// event handler for updating blogs
 const editBlogHandler = async (event) => {
 	// prevent default form behaviour
 	event.preventDefault();
@@ -6,7 +7,7 @@ const editBlogHandler = async (event) => {
 	const title = document.querySelector('#title-input').value;
 	const content = document.querySelector('#content-input').value;
 
-	// extract ids from data attributes
+	// extract id from data attributes
 	const blogId = document.querySelector('#title-input').dataset.blogId;
 
 	// form validation
@@ -33,7 +34,33 @@ const editBlogHandler = async (event) => {
 	}
 };
 
-// add event listener for edit blog form
+// event handler for deleting blogs
+const deleteBlogHandler = async (event) => {
+	// prevent default form behaviour
+	event.preventDefault();
+
+	// extract id from data attributes
+	const blogId = document.querySelector('#title-input').dataset.blogId;
+
+	// fetch delete request to /api/blogs/delete/:id
+	const response = await fetch(`/api/blogs/delete/${blogId}`, {
+		method: 'DELETE',
+	});
+
+	if (response.ok) {
+		document.location.replace('/dashboard');
+	} else {
+		alert('Failed to delete blog.');
+	}
+
+};
+
+// event listener for edit blog form
 document
 	.querySelector('#edit-blog-form')
 	.addEventListener('submit', editBlogHandler);
+
+// event listener for delete blog
+document
+	.querySelector('#delete-btn')
+	.addEventListener('click', deleteBlogHandler);
