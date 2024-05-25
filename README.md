@@ -25,7 +25,7 @@ From there, in order to create the database run the following commands:
 To allow Sequelize to connect to the database, users must
 - Make a copy of `.env.EXAMPLE`
 - Rename it to `.env`
-- Update the environment variables for `DB_USER` and `DB_PASSWORD`
+- Update the environment variables for `DB_USER`, `DB_PASSWORD` and `SESSION_SECRET`
 
 In order to create tables and seed, run the `seed` script with:
 - `npm run seed`
